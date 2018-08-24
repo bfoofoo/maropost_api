@@ -30,6 +30,16 @@ module MaropostApi
       Response.new(response: response, parser: @parser).call
     end
 
+    def by_list_id(list_id:)
+      response = @request.get(endpoint: "/lists/#{list_id}/contacts.json")
+      Response.new(response: response, parser: @parser).call
+    end
+
+    def create_for_list(list_id:, params:)
+      response = @request.post(endpoint: "/lists/#{list_id}/contacts.json", params: params)
+      Response.new(response: response, parser: @parser).call
+    end
+
     alias :upsert :create
   end
 end
