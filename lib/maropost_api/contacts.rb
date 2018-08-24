@@ -32,7 +32,7 @@ module MaropostApi
 
     def by_list_id(list_id:)
       response = @request.get(endpoint: "/lists/#{list_id}/contacts.json")
-      Response.new(response: response, parser: @parser).call
+      Response.new(response: response, parser: Parser::CollectionParser.new).call
     end
 
     def create_for_list(list_id:, params:)

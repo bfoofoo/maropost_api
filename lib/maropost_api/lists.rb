@@ -7,7 +7,7 @@ module MaropostApi
 
     def all
       response = @request.get(endpoint: "/lists.json")
-      Response.new(response: response, parser: @parser).call
+      Response.new(response: response, parser: Parser::CollectionParser.new).call
     end
 
     def show(id:)
