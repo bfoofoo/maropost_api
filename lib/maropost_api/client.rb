@@ -20,6 +20,10 @@ module MaropostApi
       @workflows ||= Workflows.new(request: @request)
     end
 
+    def reports
+      @reports ||= Reports.new(request: @request)
+    end
+
     def global_unsubscribes
       @global_unsubscribes ||= GlobalUnsubscribes.new(request: @request)
     end

@@ -1,10 +1,5 @@
 module MaropostApi
-  class Contacts
-    def initialize(request:, parser: Parser::EntityParser.new)
-      @request = request
-      @parser = parser
-    end
-
+  class Contacts < Resource
     def find_by_email(email:)
       response = @request.get(endpoint: "/contacts/email.json?contact[email]=#{CGI.escape(email)}")
       Response.new(response: response, parser: @parser).call
@@ -38,6 +33,16 @@ module MaropostApi
     def create_for_list(list_id:, params:)
       response = @request.post(endpoint: "/lists/#{list_id}/contacts.json", params: params)
       Response.new(response: response, parser: @parser).call
+    end
+
+    def open_report(contact_id:)
+      response = @request.get(endpoint: "/contacts/#{contact_id}/open_report.json")
+      Response.new(response: response, parser: Parser::CollectionParser.new).call
+      end
+
+    def click_report(contact_id:)
+      response = @request.get(endpoint: "/contacts/#{contact_id}/click_report.json")
+      Response.new(response: response, parser: Parser::CollectionParser.new).call
     end
 
     alias :upsert :create
