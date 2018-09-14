@@ -38,11 +38,16 @@ module MaropostApi
     def open_report(contact_id:)
       response = @request.get(endpoint: "/contacts/#{contact_id}/open_report.json")
       Response.new(response: response, parser: Parser::CollectionParser.new).call
-      end
+    end
 
     def click_report(contact_id:)
       response = @request.get(endpoint: "/contacts/#{contact_id}/click_report.json")
       Response.new(response: response, parser: Parser::CollectionParser.new).call
+    end
+
+    def delete_all(params: {})
+      response = @request.delete(endpoint: "/contacts/delete_all.json?#{params.to_query}")
+      Response.new(response: response, parser: @parser).call
     end
 
     alias :upsert :create

@@ -22,6 +22,10 @@ module MaropostApi
       self.class.put(uri(endpoint), payload(params))
     end
 
+    def delete(endpoint:, params: {})
+      self.class.delete(uri(endpoint), payload(params))
+    end
+
     private
 
     def set_default_config
