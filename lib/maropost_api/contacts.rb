@@ -47,7 +47,7 @@ module MaropostApi
 
     def delete_all(params: {})
       response = @request.delete(endpoint: "/contacts/delete_all.json?#{params.to_query}")
-      Response.new(response: response, parser: @parser).call
+      Response.new(response: response).call
     end
 
     alias :upsert :create

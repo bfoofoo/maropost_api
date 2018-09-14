@@ -1,6 +1,6 @@
 module MaropostApi
   class Response
-    def initialize(response: {}, parser:)
+    def initialize(response: {}, parser: nil)
       @response = response
       @parser = parser
     end
@@ -18,7 +18,7 @@ module MaropostApi
       when 500
         raise InternalServerError.new
       else
-        @parser.call(@response)
+        @parser.call(@response) if @parser
       end
     end
   end
