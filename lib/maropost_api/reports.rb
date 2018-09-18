@@ -9,5 +9,10 @@ module MaropostApi
       response = @request.get(endpoint: "/reports/clicks.json?#{params.to_query}")
       Response.new(response: response, parser: Parser::CollectionParser.new).call
     end
+
+    def all
+      response = @request.get(endpoint: "/reports.json")
+      Response.new(response: response, parser: Parser::CollectionParser.new).call
+    end
   end
 end
