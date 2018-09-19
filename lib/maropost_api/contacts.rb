@@ -50,6 +50,11 @@ module MaropostApi
       Response.new(response: response).call
     end
 
+    def delete_from_lists(contact_id:, list_ids:)
+      response = @request.delete(endpoint: "/contacts/#{contact_id}.json?list_ids=#{list_ids.join(',')}")
+      Response.new(response: response).call
+    end
+
     alias :upsert :create
   end
 end
