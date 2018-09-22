@@ -6,10 +6,11 @@ module MaropostApi
       end
 
       def call(response)
-        raise MaropostApi::NotFound unless response.is_a?(Enumerable)
         response.map do |entity|
           @entity_parser.call(entity)
         end
+      rescue HTTParty::Error
+        raise MaropostApi::NotFound
       end
     end
   end
