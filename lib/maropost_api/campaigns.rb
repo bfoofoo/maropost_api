@@ -11,5 +11,10 @@ module MaropostApi
       response = @request.get(endpoint: '/campaigns.json')
       Response.new(response: response, parser: Parser::CollectionParser.new).call
     end
+
+    def delivered_report(id:)
+      response = @request.get(endpoint: "/campaigns/#{id}/delivered_report.json")
+      Response.new(response: response, parser: Parser::CollectionParser.new).call
+    end
   end
 end
