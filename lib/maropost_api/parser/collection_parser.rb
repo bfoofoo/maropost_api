@@ -6,6 +6,7 @@ module MaropostApi
       end
 
       def call(response)
+        raise MaropostApi::NotFound, response.inspect unless response.respond_to?(:map)
         response.map do |entity|
           @entity_parser.call(entity)
         end
